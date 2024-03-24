@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<button id="printPageButton" onClick="window.print();">Print or Save</button>
+
+<head>
+    <title>Certificate</title>
+    <style>
+ @page {
+            size: A4 landscape;
+            margin: 4mm 0mm; /* Adjust the margin values as needed */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+.content {
+            width: 100%;
+            height: 100%;
+            /* Add your content styles here */
+            box-sizing: border-box;
+            /padding: 5mm 5mm; /* To create narrow margins within the page */
+        }
+ 
+/* Print Button */
+	@media print {
+  		#printPageButton {
+    		display: none;
+ 			 }
+		}
+
+	button {
+		cursor: pointer;
+  		background-color: #440075;
+  		border: 2px solid #A52AFF;
+  		padding: 10px 30px;
+  		font-size: 16px;
+  		text-transform: uppercase;
+  		color: #FFFFFF;
+  		font-weight: 700;
+  		border-radius: 25px;
+ 		 /* required CSS (below) */
+  		display: block;
+  		margin: 20px auto;
+		}
+	
+	button:hover {background-color: #A52AFF}
+
+
+        @font-face {
+            font-family: MonotypeCorsiva;
+            src: url('fonts/MTCORSVA_0.TTF');
+        }
+
+        * {
+            margin: auto;
+        }
+        
+        .main {
+            background-image: url(Certificate.png);
+            height: 755px;
+            width: 1100px;
+            background-repeat: no-repeat;
+            border: 1px solid #eee;
+        }
+        
+        .head {
+            font-family: MonotypeCorsiva;
+            font-size: 66px;
+		font-weight: bold;
+            text-align: center;
+            padding-top: 160px;
+            color: #440075;
+        }
+        
+        .sub {
+            font-family: Times New Roman;
+            font-size: 24px;
+            text-align: center;
+            padding-top: 20px;
+        }
+        
+        .name {
+            height: 50px;
+            text-align: center;
+            font-family: Times New Roman;
+            font-size: 40PX;
+	/font-weight: 500;
+            color: #440075;
+        }
+        
+        .text {
+            font-family: Times New Roman;
+            text-align: center;
+            font-size: 18px;
+	padding-top: 10px;
+        }
+        
+        .courseName {
+            font-family: Times New Roman;
+		font-style: italic;
+            font-size: 30PX;
+            text-align: center;
+            color: #440075;
+            padding: 5px;
+        }
+		
+		.result {
+            font-family: Times New Roman;
+            font-size: 18PX;
+            text-align: center;
+            color: #000000;
+            padding: 8px;
+        }
+        
+        .date {
+            font-family: Times New Roman;
+            font-size: 16px;
+            text-align: center;
+            padding-top: 35px;
+        }
+        
+        .dt {
+            font-family: Times New Roman;
+            font-size: 20px;
+            text-align: center;
+            color: #440075;
+            height: 20px;
+            
+        }
+		
+
+        p {
+            padding-left: 10px;
+        }
+
+ 	/* Style the container to center its content */
+        .container {
+            font-family: Times New Roman;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        /* Style the list to be left-aligned within the centered container */
+        ul {
+            text-align: left;
+            display: inline-block;
+            padding-left: 0; /* Remove default padding */
+            list-style: none; /* Remove default bullets */
+ 		column-count: 2; /* Create two columns */
+            column-gap: 10px; /* Adjust the gap between columns */
+        }
+
+        /* Style list items with custom bullets */
+        li {
+            margin-bottom: 2px; /* Add some spacing between list items */
+            position: relative;
+            padding-left: 20px; /* Adjust as needed for bullet spacing */
+        }
+
+        /* Add custom bullet using the ::before pseudo-element */
+        li::before {
+            content: "\2022"; /* Unicode character for a bullet */
+            position: absolute;
+            left: 0;
+        }
+
+        .LineSeparator {
+            font-family: Times New Roman;
+            font-size: 16px;
+            text-align: center;
+            padding-top: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="main">
+    <div class="head">Certificate of Completion</div>
+    <div class="sub">This Certificate is awarded to:</div>
+    <div class="name" id="name_txt">Nametxt</div>
+    <div class="text">for successfully completing:</div>
+    <div class="courseName">"Around the world in 30 minutes"</div>
+	<div class="result">The countries you've explored during this course are:</div>
+
+    <div class="container">
+        <!-- Centered container -->
+        <ul>
+            <li>Australia</li>
+            <li>Bhutan</li>
+            <li>Brazil</li>
+ 		<li>Canada</li>
+ 		<li>India</li>
+ 		<li>United Kingdom</li>
+        </ul>
+    </div>
+
+	<div class="date">---------------------&nbsp;&nbsp;&nbsp;Certification Date&nbsp;&nbsp;&nbsp;---------------------</div>
+    <div class="dt" id="date_txt">June 25,2016</div>
+	<div class="LineSeparator">--------------------------------------------------------------------</div>
+    </div>
+    <script type="text/javascript">
+    
+        var name = localStorage.Certificate;
+        var date = new Date();
+        var currentyear = date.getFullYear();
+        var month = new Array();
+        month[0] = "January";
+        month[1] = "February";
+        month[2] = "March";
+        month[3] = "April";
+        month[4] = "May";
+        month[5] = "June";
+        month[6] = "July";
+        month[7] = "August";
+        month[8] = "September";
+        month[9] = "October";
+        month[10] = "November";
+        month[11] = "December";
+        var currentMonth = month[date.getMonth()];
+        var currentday = date.getDate();
+        var fullDate = currentMonth + " " + currentday + ", " + currentyear;
+
+        document.getElementById("name_txt").innerHTML=localStorage.getItem("Nametxt");
+		document.getElementById('date_txt').innerHTML = fullDate;
+    	
+</script>  
+		
+	
+</body>
+
+</html>
